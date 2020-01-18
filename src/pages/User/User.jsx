@@ -1,74 +1,57 @@
-// import React, { useState, useEffect } from "react";
-// import "../../App.css";
-
-// function User({ match }) {
-//   useEffect(() => {
-//     const fetchUser = async () => {
-//       const fetchUser = await fetch(
-//         `https://jsonplaceholder.typicode.com/users?id=${match.params.id}`
-//       );
-//       const user = await fetchUser.json();
-//       setUser(...user);
-//       //   console.log(...user);
-//     };
-
-//     fetchUser();
-//     // console.log(match);
-//   }, []);
-
-//   const [user, setUser] = useState([]);
-
-//   return (
-//     <div className="App container">
-//       <header>
-//         <h2>User Page for {user.name}</h2>
-//         <section className="userinfo">
-//           <h3>Address</h3>
-//           <section>{}</section>
-//         </section>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default User;
-
 import React, { Component } from "react";
-import { getQueriesForElement } from "@testing-library/react";
 
 class User extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {}
-    };
-  }
+  state = {
+    user: {},
+    address: {},
+    company: {}
+  };
 
-  //   Link gives access to this.props.match, with useful data on user
+  // React router's Link element gives access to this.props.match,
+  getUser = async () => {
+    return await (
+      await fetch(
+        `https://jsonplaceholder.typicode.com/users?id=${this.props.match.params.id}`
+      )
+    ).json();
+  };
+
   componentDidMount() {
-    fetch(
-      `https://jsonplaceholder.typicode.com/users?id=${this.props.match.params.id}`
-    )
-      .then(response => {
-        if (response.ok) return response.json();
-        else throw Error(response.status + ": " + response.statusText);
-      })
-      .then(result => {
-        this.setState({ user: result[0] });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.getUser().then(data => {
+      const [user] = data;
+      const { address, company } = user;
+      this.setState({ user, address, company });
+      console.log(user);
+    });
   }
 
   render() {
+
+    const {user, company, address} = this.state;
     return (
       <div className="App container">
         <header>
-          <h2>User Page for {JSON.stringify(this.state.user.name)}</h2>
+          <h2>User Page for {this.state.user.name}</h2>
           <section className="userinfo">
-            <h3>Address</h3>
-            <section></section>
+            <dl>
+              <dt>{user.name}</dt>
+              <dd>{user.email}</dd>
+              <dd>{user.phone}</dd>
+              <dd>{user.username}</dd>
+              <dd>{user.website}</dd>
+
+              <dt>Address</dt>
+              <dd>{address.street}</dd>
+              <dd>{address.suite}</dd>
+              <dd>
+                {address.city + " " + address.zipcode}
+              </dd>
+              <dt>Company</dt>
+              <dd>{company.name}</dd>
+              <dd>{company.catchPhrase}</dd>
+              <dd>{company.bs}</dd>
+              <dd>{company.name}</dd>
+            </dl>
           </section>
         </header>
       </div>

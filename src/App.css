@@ -105,3 +105,9 @@ a {
 .userinfo {
   text-align: left;
 }
+
+
+dt {
+  font-weight:bold;
+  margin-top: 1rem;
+}

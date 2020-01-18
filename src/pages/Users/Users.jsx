@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
-function Shop() {
+function Users() {
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -12,7 +12,7 @@ function Shop() {
   const fetchUsers = async () => {
     const data = await fetch("https://jsonplaceholder.typicode.com/users");
     const users = await data.json();
-    console.log(users);
+
     setUsers(users);
   };
 
@@ -49,4 +49,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Users;
