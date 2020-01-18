@@ -81,8 +81,12 @@ tbody tr {
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-tbody tr:hover {
+tbody tr:nth-of-type(even) {
   background: var(--color-lightergray);
+}
+
+tbody tr:hover {
+  background: lightyellow;
   transform: scale(1.0125);
 }
 
