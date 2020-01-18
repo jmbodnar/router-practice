@@ -64,7 +64,9 @@ nav ul li a:hover {
 
 .container {
   margin: 0 auto;
-  max-width: 90%;
+  width: 90%;
+  max-width: 1100px;
+  overflow-y: scroll;
 }
 
 table {
@@ -79,7 +81,7 @@ thead {
 }
 
 tbody tr {
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 tbody tr:nth-of-type(even) {
@@ -88,7 +90,6 @@ tbody tr:nth-of-type(even) {
 
 tbody tr:hover {
   background: lightyellow;
-  transform: scale(1.0125);
 }
 
 td,
@@ -99,4 +100,8 @@ th {
 
 a {
   color: var(--color-secondary);
+}
+
+.userinfo {
+  text-align: left;
 }
