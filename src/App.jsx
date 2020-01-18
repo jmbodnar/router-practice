@@ -15,7 +15,7 @@ import About from "./pages/About";
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename="/router-practice/">
         <header>
           <h1>
             <Link to="/">App.jsx Header</Link>
