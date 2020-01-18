@@ -55,6 +55,7 @@ nav ul li a {
   color: var(--color-text-light);
   text-decoration: none;
   padding: 1rem;
+  transition: background 0.2s ease;
 }
 
 nav ul li a:hover {
