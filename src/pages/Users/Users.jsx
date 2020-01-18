@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../App.css";
 
 function Shop() {
   useEffect(() => {
-    fetchItems();
+    fetchUsers();
   }, []);
 
-  const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const fetchItems = async () => {
+  const fetchUsers = async () => {
     const data = await fetch("https://jsonplaceholder.typicode.com/users");
-    const items = await data.json();
-
-    setItems(items);
+    const users = await data.json();
+    console.log(users);
+    setUsers(users);
   };
 
   return (
@@ -30,13 +31,15 @@ function Shop() {
             </tr>
           </thead>
           <tbody>
-            {items.map(item => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.username}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.website}</td>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>
+                  <Link to={"/users/" + user.username}>{user.name}</Link>
+                </td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>{user.website}</td>
               </tr>
             ))}
           </tbody>

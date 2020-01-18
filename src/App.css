@@ -2,7 +2,8 @@
   --color-primary: hsl(193, 75.1%, 45.7%);
   --color-primary-dark01: hsl(195, 72.1%, 43.7%);
   --color-secondary: hsl(353.3, 79.4%, 42%);
-  --color-lightgray: lightgray;
+  --color-lightgray: hsl(0, 0%, 83%);
+  --color-lightergray: hsla(0, 0%, 0%, 0.05);
   --color-text-dark: #333;
   --color-text-light: #fff;
   text-align: center;
@@ -11,6 +12,15 @@
 
 header {
   background: white;
+}
+
+header h1 a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+header h1 a:hover {
+  color: var(--color-primary-dark01);
 }
 
 nav {
@@ -22,7 +32,7 @@ nav {
   color: var(--color-text-light);
   position: sticky;
   top: 0;
-  box-shadow: 0px 2px 1px hsla(0, 0%, 0%, .25);
+  box-shadow: 0px 2px 1px hsla(0, 0%, 0%, 0.25);
   border-bottom: 1px solid var(--color-primary-dark01);
 }
 
@@ -67,12 +77,21 @@ thead {
   text-align: left;
 }
 
-tr {
-  border-bottom: 1px solid var(--color-lightgray);
+tbody tr {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: var(--color-lightergray);
+  transform: scale(1.0125);
 }
 
 td,
 th {
   padding: 0.25rem 0.5rem;
   text-align: left;
+}
+
+a {
+  color: var(--color-secondary);
 }

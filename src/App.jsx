@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // ----- Component Imports ----- //
 import Nav from "./components/Nav";
@@ -17,13 +17,15 @@ function App() {
     <div className="App">
       <Router>
         <header>
-          <h1>App.jsx Header</h1>
+          <h1>
+            <Link to="/">App.jsx Header</Link>
+          </h1>
         </header>
         <Nav />
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/users" component={Users} />
+            <Route exact path="/users" component={Users} />
             <Route path="/about" component={About} />
           </Switch>
         </main>
