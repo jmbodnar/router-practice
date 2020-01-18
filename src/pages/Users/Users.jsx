@@ -34,7 +34,7 @@ function Shop() {
             {users.map(user => (
               <tr key={user.id}>
                 <td>
-                  <Link to={"/users/user" + user.id}>{user.name}</Link>
+                  <Link to={"users/" + user.id}>{user.name}</Link>
                 </td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>

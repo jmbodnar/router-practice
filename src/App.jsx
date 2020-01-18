@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 // ----- Page Imports ----- //
 import Home from "./pages/Home";
 import Users from "./pages/Users";
+import User from "./pages/User";
 import About from "./pages/About";
 
 // ----- Main Componentn ----- //
@@ -18,7 +19,7 @@ function App() {
       <Router basename="/router-practice/">
         <header>
           <h1>
-            <Link to="/">App.jsx Header</Link>
+            <Link to="">App.jsx Header</Link>
           </h1>
         </header>
         <Nav />
@@ -26,7 +27,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/users" component={Users} />
-            <Route path="/about" component={About} />
+            <Route path="/users/:id" component={User} />
+            <Route exact path="/about" component={About} />
           </Switch>
         </main>
       </Router>
