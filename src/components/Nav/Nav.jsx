@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <nav>
-      <h3>Nav</h3>
+      <h3>
+        <Link to="/">‘Tis the Seasoning</Link>
+      </h3>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-
         <li>
           <Link to="/users">Users</Link>
         </li>

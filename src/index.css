@@ -62,14 +62,16 @@ nav ul li {
   padding: 0;
 }
 
-nav ul li a {
+nav ul li a,
+nav h3 a {
   color: var(--color-text-light);
   text-decoration: none;
   padding: 1rem;
   transition: background 0.2s ease;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav h3 a:hover {
   background: var(--color-primary-dark01);
 }
 
