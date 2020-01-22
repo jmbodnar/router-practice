@@ -9,7 +9,7 @@ function Nav() {
       </h3>
       <ul>
         <li>
-          <Link to="/users">Users</Link>
+          <Link to="/recipes">Recipes</Link>
         </li>
 
         <li>
