@@ -2,54 +2,86 @@ import React, { Component } from "react";
 
 class Recipe extends Component {
   state = {
-    user: {},
-    address: {},
-    company: {}
+    recipe: {},
+    comments: [],
+    category: {},
+    user: {}
   };
 
   // React router's Link element gives access to this.props.match,
+  getRecipe = async () => {
+    return await (
+      await fetch(
+        `https://my-json-server.typicode.com/jmbodnar/recipes-db/recipes?_id=${this.props.match.params.id}`
+      )
+    ).json();
+  };
+
+  getComments = async () => {
+    return await (
+      await fetch(
+        `https://my-json-server.typicode.com/jmbodnar/recipes-db/comments`
+      )
+    ).json();
+  };
+
   getUser = async () => {
     return await (
       await fetch(
-        `https://jsonplaceholder.typicode.com/users?id=${this.props.match.params.id}`
+        `https://my-json-server.typicode.com/jmbodnar/recipes-db/users`
+      )
+    ).json();
+  };
+
+  getCategory = async () => {
+    return await (
+      await fetch(
+        `https://my-json-server.typicode.com/jmbodnar/recipes-db/categories`
       )
     ).json();
   };
 
   componentDidMount() {
-    this.getUser().then(data => {
-      const [user] = data;
-      const { address, company } = user;
-      this.setState({ user, address, company });
-      console.log(user);
-    });
+    this.getRecipe()
+      .then(data => {
+        const [recipe] = data;
+        this.setState({ recipe });
+      })
+      .then(() => {
+        this.getComments().then(data => {
+          const comments = data.filter(comment => {
+            return (
+              String(comment.recipeId) === String(this.props.match.params.id)
+            );
+          });
+
+          this.setState({ comments });
+        });
+
+        this.getUser().then(data => {
+          const [user] = data.filter(user => {
+            return String(this.props.match.params.id) === String(user._id);
+          });
+          this.setState({ user });
+        });
+
+        this.getCategory().then(data => {
+          const [category] = data.filter(category => {
+            return (
+              String(this.state.recipe.categoryId) === String(category._id)
+            );
+          });
+          this.setState({ category });
+        });
+      });
   }
 
   render() {
-    const { user, company, address } = this.state;
     return (
       <div className="App container">
         <header>
-          <h2>Recipe Page for {this.state.user.name}</h2>
-          <section className="userinfo">
-            <dl>
-              <dt>{user.name}</dt>
-              <dd>{user.email}</dd>
-              <dd>{user.phone}</dd>
-              <dd>{user.username}</dd>
-              <dd>{user.website}</dd>
-
-              <dt>Address</dt>
-              <dd>{address.street}</dd>
-              <dd>{address.suite}</dd>
-              <dd>{address.city + " " + address.zipcode}</dd>
-              <dt>Company</dt>
-              <dd>{company.name}</dd>
-              <dd>{company.catchPhrase}</dd>
-              <dd>{company.bs}</dd>
-              <dd>{company.name}</dd>
-            </dl>
-          </section>
+          <h2>{this.state.recipe.title}</h2>
+          <section className="userinfo"></section>
         </header>
       </div>
     );
