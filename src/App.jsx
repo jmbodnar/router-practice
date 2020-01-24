@@ -37,7 +37,7 @@ class App extends Component {
         <Router basename="/router-practice/">
           <header>
             <h1>
-              <Link to="">Recipes Main Header</Link>
+              <Link to="">‘Tis the Seasoning</Link>
             </h1>
           </header>
           <Nav />

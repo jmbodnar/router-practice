@@ -48,7 +48,7 @@ class Recipes extends Component {
                     <td>
                       <Link to={"recipes/" + r._id}>{r.title}</Link>
                     </td>
-                    <td>{r["main ingredient"]}</td>
+                    <td>{r.mainIngredient}</td>
                     <td>{this.getCategoryTitle(r.categoryId)}</td>
                     <td>{r.likes}</td>
                   </tr>
