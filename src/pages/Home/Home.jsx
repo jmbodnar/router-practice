@@ -1,13 +1,10 @@
 import React from "react";
 
+// ----- Components ----- //
+import PageHeader from "../../components/page-header";
+
 function Home() {
-  return (
-    <div>
-      <header>
-        <h2>Home Header</h2>
-      </header>
-    </div>
-  );
+  return <PageHeader title="Home" />;
 }
 
 export default Home;
