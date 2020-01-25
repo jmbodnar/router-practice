@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+// ----- Components ----- //
+import PageHeader from "../../components/page-header";
+
 class Recipe extends Component {
   state = {
     recipe: {},
@@ -78,12 +81,9 @@ class Recipe extends Component {
 
   render() {
     return (
-      <div className="App container">
-        <header>
-          <h2>{this.state.recipe.title}</h2>
-          <section className="userinfo"></section>
-        </header>
-      </div>
+      <React.Fragment>
+        <PageHeader title={this.state.recipe.title} />
+      </React.Fragment>
     );
   }
 }

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // ----- Component Imports ----- //
-import Nav from "./components/Nav";
+import MainHeader from "./components/main-header";
+import Nav from "./components/nav";
 
 // ----- Page Imports ----- //
 import Home from "./pages/Home";
@@ -33,15 +34,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Router basename="/router-practice/">
-          <header>
-            <h1>
-              <Link to="">‘Tis the Seasoning</Link>
-            </h1>
-          </header>
+          <MainHeader />
           <Nav />
-          <main>
+          <main className="container">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route

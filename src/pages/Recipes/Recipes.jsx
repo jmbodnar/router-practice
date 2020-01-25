@@ -1,6 +1,9 @@
-// import React, { useState, useEffect } from "react";
+// ----- Libraries, etc ----- //
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+// ----- Components ----- //
+import PageHeader from "../../components/page-header";
 
 class Recipes extends Component {
   state = {
@@ -29,11 +32,11 @@ class Recipes extends Component {
 
   render() {
     return (
-      <div className="App container">
-        <header>
-          <h2>Recipes</h2>
-          <table>
-            <thead>
+      <React.Fragment>
+        <PageHeader title="Recipes" />
+        <div className="table-responsive">
+          <table className="table table-striped table-borderless table-hover">
+            <thead className="thead-light">
               <tr>
                 <th>Title</th>
                 <th>Main Ingredient</th>
@@ -56,8 +59,8 @@ class Recipes extends Component {
               })}
             </tbody>
           </table>
-        </header>
-      </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
