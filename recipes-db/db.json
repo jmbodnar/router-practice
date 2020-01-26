@@ -1,0 +1,93 @@
+{
+  "recipes": [
+    {
+      "_id": 1,
+      "title": "Classic Stuffed Mushrooms",
+      "categoryId": 1,
+      "mainIngredient": "mushrooms",
+      "ingredients": "walnuts, herbs, garlic, chopped mushroom stems, breadcrumbs, grated parmesean",
+      "directions": "Separate the stems from the mushroom caps and chop them. Process with herbs and breadcrumbs and stuff the mushroom caps with the mixture. Sprinkle with parmesan and bake until the cheese starts to brown and the mushroom caps release some of their water.",
+      "likes": 2,
+      "userId": 1,
+      "dateAdded": "2020-01-22T00:00:44.620Z"
+    },
+    {
+      "_id": 2,
+      "title": "Frozen Chocolate Spaghetti Peppermint Balls",
+      "categoryId": "2",
+      "mainIngredient": "tomato sauce",
+      "ingredients": "tomato sauce noodles, magic shell, peppermint sticks, rosemary",
+      "directions": "Make the spaghetti. Freese the spaghetti. Pour magic shell over the frozen spaghetti and stick peppermint sticks in it. Sprinkle rosemary over the spaghetti. Serve with garlic bread and red wine. Enjoy!",
+      "likes": 2,
+      "userId": 3,
+      "dateAdded": "2020-01-22T00:25:17.061Z"
+    }
+  ],
+  "users": [
+    {
+      "_id": 1,
+      "firstname": "Lavar",
+      "lastname": "Cole",
+      "dateAdded": "2020-01-22T00:05:44.755Z",
+      "likedRecipes": [2]
+    },
+    {
+      "_id": 2,
+      "firstname": "Kaiisha",
+      "lastname": "Oliver",
+      "dateAdded": "2020-01-22T00:05:44.755Z",
+      "likedRecipes": [1]
+    },
+    {
+      "_id": 3,
+      "firstname": "Jon",
+      "lastname": "Bodnar",
+      "dateAdded": "2020-01-22T00:05:44.755Z",
+      "likedRecipes": [1, 2]
+    }
+  ],
+  "comments": [
+    {
+      "_id": 1,
+      "recipeId": 1,
+      "text": "These mushrooms are delicious.",
+      "userId": 3,
+      "dateAdded": "2020-01-22T00:05:44.755Z"
+    },
+    {
+      "_id": 2,
+      "recipeId": 1,
+      "text": "The other comment sure is right. These are really good mushrooms.",
+      "userId": 2,
+      "dateAdded": "2020-01-22T00:05:44.755Z"
+    },
+    {
+      "_id": 3,
+      "recipeId": 2,
+      "text": "Good god almighty! Who the hell would eat this. Wait...Oh my! It's really good. No. It's freakin' awesome! A-W-E-S-O-M-E-!",
+      "userId": 1,
+      "dateAdded": "2020-01-22T00:25:17.061Z"
+    },
+    {
+      "_id": 4,
+      "recipeId": 2,
+      "text": "It's crap. Really. Don't eat it. ",
+      "userId": 2,
+      "dateAdded": "2020-01-22T00:25:17.061Z"
+    }
+  ],
+  "categories": [
+    {
+      "_id": 1,
+      "title": "side dish"
+    },
+    {
+      "_id": 2,
+      "title": "entree"
+    },
+    {
+      "_id": 3,
+      "title": "dessert"
+    }
+  ]
+}

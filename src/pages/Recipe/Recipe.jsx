@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
-import { getOneRecipe, getAllComments } from "../../services/api";
+import {
+  getOneRecipe,
+  getAllComments,
+  getAllUsers,
+  getAllCategories
+} from "../../services/api";
+
+import { jsonToDateString } from "../../services/general";
 
 // ----- Components ----- //
 import PageHeader from "../../components/page-header";
@@ -11,22 +18,6 @@ class Recipe extends Component {
     comments: [],
     category: {},
     user: {}
-  };
-
-  getUser = async () => {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/users`
-      )
-    ).json();
-  };
-
-  getCategory = async () => {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/categories`
-      )
-    ).json();
   };
 
   // ----- Calling ----- //
@@ -45,7 +36,7 @@ class Recipe extends Component {
           });
 
           comments.forEach(comment => {
-            this.getUser()
+            getAllUsers()
               .then(users => {
                 let [user] = users.filter(user => {
                   return String(comment.userId) === String(user._id);
@@ -59,14 +50,14 @@ class Recipe extends Component {
           });
         });
 
-        this.getUser().then(data => {
+        getAllUsers().then(data => {
           const [user] = data.filter(user => {
             return String(this.props.match.params.id) === String(user._id);
           });
           this.setState({ user });
         });
 
-        this.getCategory().then(data => {
+        getAllCategories().then(data => {
           const [category] = data.filter(category => {
             return (
               String(this.state.recipe.categoryId) === String(category._id)
@@ -77,48 +68,37 @@ class Recipe extends Component {
       });
   }
 
-  getDate = string => {
-    let date = new Date(string);
-    return date.toLocaleDateString();
-  };
-
   render() {
+    const { recipe, user, category, comments } = this.state;
     return (
       <React.Fragment>
-        <PageHeader title={this.state.recipe.title} />
+        <PageHeader title={recipe.title} />
         <section className="row">
           <div className="col-sm-8">
             <dl>
-              <dt>Description</dt>
-              <dd>
-                This wonderful recipe is summarized in this blurb. It's so good
-                and people love to it eat. Every recipe will have a short
-                marketing blurb like this.
-              </dd>
-
               <dt>Directions</dt>
-              <dd>{this.state.recipe.directions}</dd>
+              <dd>{recipe.directions}</dd>
 
               <dt>Added by</dt>
               <dd>
-                {this.state.user.firstname +
+                {user.firstname +
                   " " +
-                  this.state.user.lastname +
+                  user.lastname +
                   " | " +
-                  this.getDate(this.state.recipe.dateAdded)}
+                  jsonToDateString(recipe.dateAdded)}
               </dd>
             </dl>
           </div>
           <div className="col-sm-4">
             <dl>
               <dt>Category</dt>
-              <dd>{this.state.category.title}</dd>
+              <dd>{category.title}</dd>
 
               <dt>Main Ingredient</dt>
-              <dd>{this.state.recipe.mainIngredient}</dd>
+              <dd>{recipe.mainIngredient}</dd>
 
               <dt>Ingredients</dt>
-              <dd>{this.state.recipe.ingredients}</dd>
+              <dd>{recipe.ingredients}</dd>
 
               <dt>Creator</dt>
               <dd>
@@ -133,7 +113,7 @@ class Recipe extends Component {
             return (
               <details className="mb-1" key={comment._id}>
                 <summary>
-                  {comment.username} ({this.getDate(comment.dateAdded)})
+                  {comment.username} ({jsonToDateString(comment.dateAdded)})
                 </summary>
                 <div className="alert">
                   <p>{comment.text}</p>
