@@ -12,6 +12,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `npm run start-local`
+
+NOTE: This command requires `.env` file with `REACT_APP_LOCATION="local"`. See (How to Include Environment Variables in Your React App)[https://medium.com/javascript-in-plain-english/how-to-include-environment-variables-in-your-react-app-e4657c178b5c] for more information. 
+
+Runs the app in the development mode using a local json-server's db.json file in `recipes-db`.<br />
+Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+<br />
+Open [http://localhost:3004/db](http://localhost:3004/db) to view the db data
+<br />
+See [json-server's documentation](https://github.com/typicode/json-server) for more information.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />

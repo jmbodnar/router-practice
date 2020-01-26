@@ -18,7 +18,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "start-localdb": "json-server --watch ./recipes-db/db.json --port 3004 & react-scripts start",
+    "start-local": "json-server --watch ./recipes-db/db.json --port 3004 & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

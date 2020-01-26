@@ -1,3 +1,12 @@
+// ===== Development Data Set ===== //
+let dbURL;
+
+process.env.REACT_APP_LOCATION === "local"
+  ? (dbURL = "http://localhost:3004")
+  : (dbURL = "https://my-json-server.typicode.com/jmbodnar/recipes-db");
+
+console.log("Using data from " + dbURL);
+
 // ===== Get Requests ===== //
 
 //  ----- Get All The Things ----- //
@@ -7,9 +16,7 @@
  */
 export async function getAllData() {
   try {
-    return await (
-      await fetch(`https://my-json-server.typicode.com/jmbodnar/recipes-db/db`)
-    ).json();
+    return await (await fetch(`${dbURL}/db`)).json();
   } catch (error) {
     console.error(error);
   }
@@ -21,11 +28,7 @@ export async function getAllData() {
  */
 export async function getAllRecipes() {
   try {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/recipes`
-      )
-    ).json();
+    return await (await fetch(`${dbURL}/recipes`)).json();
   } catch (error) {
     console.error(error);
   }
@@ -37,11 +40,7 @@ export async function getAllRecipes() {
  */
 export async function getAllComments() {
   try {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/comments`
-      )
-    ).json();
+    return await (await fetch(`${dbURL}/comments`)).json();
   } catch (error) {
     console.error(error);
   }
@@ -53,11 +52,7 @@ export async function getAllComments() {
  */
 export async function getAllUsers() {
   try {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/users`
-      )
-    ).json();
+    return await (await fetch(`${dbURL}/users`)).json();
   } catch (error) {
     console.error(error);
   }
@@ -69,11 +64,7 @@ export async function getAllUsers() {
  */
 export async function getAllCategories() {
   try {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/categories`
-      )
-    ).json();
+    return await (await fetch(`${dbURL}/categories`)).json();
   } catch (error) {
     console.error(error);
   }
@@ -89,11 +80,7 @@ export async function getAllCategories() {
  */
 export async function getOneRecipe(recipeId) {
   try {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/recipes?_id=${recipeId}`
-      )
-    ).json();
+    return await (await fetch(`${dbURL}/recipes?_id=${recipeId}`)).json();
   } catch (error) {
     console.error(error);
   }
