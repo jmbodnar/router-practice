@@ -1,6 +1,7 @@
-// ----- Libraries, etc ----- //
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+import { getAllData } from "../../services/api";
 
 // ----- Components ----- //
 import PageHeader from "../../components/page-header";
@@ -12,25 +13,25 @@ class Recipes extends Component {
     users: []
   };
 
-  getRecipes = async () => {
-    return await (
-      await fetch(`https://my-json-server.typicode.com/jmbodnar/recipes-db/db`)
-    ).json();
+  /**
+   * Match recipe's categoryId to category's _id, return category's title
+   * @param {Number | String}
+   * @returns {String} Category's title string
+   */
+  getCategoryTitle = id => {
+    const [category] = this.state.categories.filter(c => Number(id) === c._id);
+    return category.title;
   };
 
   componentDidMount() {
-    this.getRecipes().then(data => {
+    getAllData().then(data => {
       const { recipes, categories, users } = data;
       this.setState({ recipes, categories, users });
     });
   }
 
-  getCategoryTitle = id => {
-    let x = this.state.categories.filter(c => Number(id) === c._id)[0];
-    return x.title;
-  };
-
   render() {
+    const { recipes } = this.state;
     return (
       <React.Fragment>
         <PageHeader title="Recipes" />
@@ -45,7 +46,7 @@ class Recipes extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.recipes.map(r => {
+              {recipes.map(r => {
                 return (
                   <tr key={r._id}>
                     <td>

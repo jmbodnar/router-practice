@@ -1,11 +1,13 @@
 Note and to-do list
 
-// Pages
-TODO: Remove unnecessary homepage, homepage should be recipes
+TODO: Remove unnecessary homepage, homepage should be recipes (unless we want a homepage)
 
-// Components
+TODO: Refactor api calls for cleaner code, place in external scripts file
+
+TODO: Add comments to code
+
 TODO: Componentize table (on recipes page)
 
-// CSS
 TODO: Review css classes and remove anything that's unnecessary, set all to default bootstrap
-TODO: Add style overrides last
+
+TODO: Update for custome design

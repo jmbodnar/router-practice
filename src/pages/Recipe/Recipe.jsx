@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { getOneRecipe, getAllComments } from "../../services/api";
+
 // ----- Components ----- //
 import PageHeader from "../../components/page-header";
 
@@ -9,25 +11,6 @@ class Recipe extends Component {
     comments: [],
     category: {},
     user: {}
-  };
-
-  // React router's Link element gives access to this.props.match,
-
-  // ----- Helpers ----- //
-  getRecipe = async () => {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/recipes?_id=${this.props.match.params.id}`
-      )
-    ).json();
-  };
-
-  getComments = async () => {
-    return await (
-      await fetch(
-        `https://my-json-server.typicode.com/jmbodnar/recipes-db/comments`
-      )
-    ).json();
   };
 
   getUser = async () => {
@@ -48,13 +31,13 @@ class Recipe extends Component {
 
   // ----- Calling ----- //
   componentDidMount() {
-    this.getRecipe()
+    getOneRecipe(this.props.match.params.id)
       .then(data => {
         const [recipe] = data;
         this.setState({ recipe });
       })
       .then(() => {
-        this.getComments().then(data => {
+        getAllComments().then(data => {
           const comments = data.filter(comment => {
             return (
               String(comment.recipeId) === String(this.props.match.params.id)
